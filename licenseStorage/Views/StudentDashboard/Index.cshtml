@@ -1,0 +1,79 @@
+﻿@*<div class="card">
+    <div class="card-body">
+        This is some text within a card body.
+    </div>
+</div>*@
+
+<div v-if="loadingPage" class="page-loader-background"></div>
+<div v-if="loadingPage" class="page-loader" style="z-index: 100000;">
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<div class="container-fluid p-5" v-cloak>
+    <div class="card shadow table-with-links">
+        <div class="card-header">
+            <h4 class="card-title">Bun venit, user!</h4>
+        </div>
+     
+    </div>
+
+
+</div>
+ 
+
+@section Scripts{
+    <script>
+        Vue.use(VeeValidate, {
+            classes: true,
+            events: 'change',
+            classNames: {
+                valid: 'is-valid',
+                invalid: 'is-invalid'
+            }
+        });
+
+        var app = new Vue({
+            el: '#stocLicense',
+            components: {
+                'multiselect': window.VueMultiselect.default,
+            },
+            data: {
+                loadingPage: false,
+                 
+                token: ''
+            },
+            methods: {
+
+                
+
+                //GetAuthorizationToken: function () {
+                //    var token = localStorage.getItem("accessToken");
+                //    if (token) {
+                //        return 'Bearer ' + token;
+                //    }
+                //    return null;
+                //},
+            },
+
+            created() {
+                //this.token = this.GetAuthorizationToken();
+            }
+        });
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: false,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+    </script>
+
+}
